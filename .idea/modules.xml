@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/real_estate_price_predictor.iml" filepath="$PROJECT_DIR$/.idea/real_estate_price_predictor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../real_estate_analysis/.idea/real_estate_analysis.iml" filepath="$PROJECT_DIR$/../real_estate_analysis/.idea/real_estate_analysis.iml" />
     </modules>
   </component>
 </project>
