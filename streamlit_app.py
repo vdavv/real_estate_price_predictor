@@ -301,8 +301,6 @@ def main():
         """[Dataset](https://www.kaggle.com/datasets/arslanali4343/real-estate-dataset "kaggle.com/datasets/arslanali4343/real-estate-dataset") concerns housing values in suburbs of Boston.  
 
 Number of Instances: 506  
-Number of Attributes: 13 continuous attributes  
-(including "class" attribute "MEDV")  
 Attribute Information:
   
     CRIM -per capita crime rate by town
