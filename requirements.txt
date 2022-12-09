@@ -4,3 +4,4 @@ scipy
 plotly
 numpy
 numerize
+statsmodels
