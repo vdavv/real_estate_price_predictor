@@ -333,8 +333,8 @@ data_segmented = data_segmented.sort_index()
 
 def main():
     page = st.sidebar.selectbox('Choose the page',
-                                ['About', 'Hypothesis', 'Key Metrics', 'Price Segments Comparison',
-                                 'Graphical Analysis of Data', 'Linear Regressions', 'Conclusion'])
+                                ['About', 'Hypothesis', 'Key indicators', 'Price Segments Comparison',
+                                 'General Data Analysis', 'Linear Regressions', 'Conclusion'])
     if page == 'About':
         st.title("Real estate analysis")
         st.subheader('by Aleksei Pankin')
@@ -369,8 +369,8 @@ So, putting it all in one let's state the hypothesis:
 
 Further let's observe the dataset and *prove* or *refute* that hypothesis"""
 
-    elif page == 'Key Metrics':
-        st.header('Key Metrics')
+    elif page == 'Key indicators':
+        st.header('Key indicators')
         """---"""
         page_KM = st.sidebar.selectbox('Choose the contents', ['Data', 'Chart'])
         if page_KM == 'Data':
@@ -424,11 +424,11 @@ The graph below shows dependency of number of rooms in the house on distance fro
             st.write(plot_psc_rm_dis())
             """From the graph we can conclude that average number of rooms in expensive houses remain constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses increases as distance to the city centre from the house grows."""
 
-    elif page == 'Graphical Analysis of Data':
-        st.header('Graphical Analysis of Data')
+    elif page == 'General Data Analysis':
+        st.header('General Data Analysis')
         """---"""
         page_GAD = st.sidebar.selectbox('Choose the plot',
-                                        ['Pairwise', 'Distance', 'Nitric Oxides', 'Age of House', 'Number of Rooms'])
+                                        ['Distance', 'Nitric Oxides', 'Age of House', 'Number of Rooms'])
         if page_GAD == 'Pairwise':
             st.pyplot(sns.pairplot(data1[["MEDV", "RM", "DIS", "AGE", "NOX"]]))
         elif page_GAD == 'Distance':
