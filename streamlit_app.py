@@ -111,7 +111,7 @@ def plot_psc_nox_dis():
         color="TYPE",
         height=800,
         width=800,
-        title="Nitric oxides concenration over Distance to the city centre",
+        title="Nitric oxides concentration over Distance to the city centre",
         labels={
             "NOX": "Nitric oxides concentration around house",
             "DIS": "Distance from the city centre to the house",
@@ -332,12 +332,13 @@ data_segmented = data_segmented.sort_index()
 
 
 def main():
+    st.set_page_config(page_title="Real Estate Analysis by Aleksei Pankin", layout='wide')
     page = st.sidebar.selectbox('Choose the page',
                                 ['About', 'Key indicators', 'Price Segments Comparison',
                                  'General Data Analysis', 'Linear Regressions', 'Conclusion'])
     if page == 'About':
         """
-        # Real estate analysis
+        # Real Estate Analysis
         ##### `>>> 'Aleksei Pankin'.isAuthor()` `\\nTrue`
         
         """
@@ -461,7 +462,7 @@ The histogram below shows dependency of distance from city centre to house on pr
                 f"{nm}DIS": "Distance",
             },
         ).update_layout(yaxis_title="Number of houses"))
-        """From the graph we can conclude that on average closest to the centre houses are rather extremeley low priced or high priced.  """
+        """From the graph we can conclude that on average closest to the centre houses are rather extremely low priced or high priced.  """
 
         """---"""
 
@@ -572,7 +573,7 @@ The chart below shows dependency of distance from the house to the city centre o
             "Price of house in 1000 USD",
             "Distance from the house to the city centre",
         ))
-        """From the graph we can conclude that on average the more house is distanced from the city, the more valuable it is. Such a conclusion is actually quite contradictionary for me, but, well, statistics knows better. It may be so as people prefer to be further from the city to unite with nature and relax from urban hustle and bustle, as they anyway visit it almost every day for work."""
+        """From the graph we can conclude that on average the more house is distanced from the city, the more valuable it is. Such a conclusion is actually quite contradictory for me, but, well, statistics knows better. It may be so as people prefer to be further from the city to unite with nature and relax from urban hustle and bustle, as they anyway visit it almost every day for work."""
 
         """---"""
 
