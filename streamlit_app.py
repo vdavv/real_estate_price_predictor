@@ -333,35 +333,18 @@ data_segmented = data_segmented.sort_index()
 
 def main():
     page = st.sidebar.selectbox('Choose the page',
-                                ['About', 'Hypothesis', 'Key indicators', 'Price Segments Comparison',
+                                ['About', 'Key indicators', 'Price Segments Comparison',
                                  'General Data Analysis', 'Linear Regressions', 'Conclusion'])
     if page == 'About':
-        st.title("Real estate analysis")
-        st.subheader('by Aleksei Pankin')
-        """[Dataset](https://www.kaggle.com/datasets/arslanali4343/real-estate-dataset "kaggle.com/datasets/arslanali4343/real-estate-dataset") concerns housing values in suburbs of Boston.  
-
-Number of Instances: 506  
-Attribute Information:
-  
-    CRIM -per capita crime rate by town
-
-    NOX -nitric oxides concentration (parts per 10 million)
-
-    RM -average number of rooms per dwelling
-
-    AGE -proportion of owner-occupied units built prior to 1940
-
-    DIS -weighted distances to five Boston employment centres
-    
-    RAD -index of accessibility to radial highways
-    
-    PTRATIO - pupil-teacher ratio by town 
-    
-    MEDV -Median value of owner-occupied homes in 1000's dollars"""
-
-    elif page == 'Hypothesis':
-        st.header('Hypothesis')
+        """
+        # Real estate analysis
+        ##### `>>> 'Aleksei Pankin'.iscreator()`
+        ##### `True`
+        """
         """---"""
+        st.header('Hypothesis')
+        """[Dataset](https://www.kaggle.com/datasets/arslanali4343/real-estate-dataset "kaggle.com/datasets/arslanali4343/real-estate-dataset") concerns housing values in suburbs of Boston.  
+                """
         """ Let's consider development of world and constantly increasing average quality of life as axiom. Then let's state that the better surroundings of the house the more valuable it is. For some people it's also important to be close to the centre of the city, so we will consider it as an argument for price increase too. What is important too is age of the house, as communications tear over time, its logical for new houses to be more developed overall rather than olds ones, so, consequently, more valuable too.  
 
 So, putting it all in one let's state the hypothesis: 
@@ -382,47 +365,62 @@ Further let's observe the dataset and *prove* or *refute* that hypothesis"""
             col4.metric('median house price', value='$' + str(numerize(1000 * median_price)))
             col5.metric('standard house price deviation', value='$' + str(numerize(1000 * std_price)))
             st.write(data[['NOX', 'RM', 'DIS', 'AGE', 'RAD', 'PTRATIO', 'MEDV']].describe())
+            """
+                ```
+                NOX -nitric oxides concentration (parts per 10 million)
+
+                RM -average number of rooms per dwelling
+                
+                DIS -weighted distances to five Boston employment centres
+                
+                AGE -proportion of owner-occupied units built prior to 1940
+                
+                RAD -index of accessibility to radial highways
+
+                PTRATIO - pupil-teacher ratio by town 
+
+                MEDV -Median value of owner-occupied homes in 1000's dollars
+                ```"""
         elif page_KM == 'Chart':
             st.write(plot_key_metrics())
 
     elif page == 'Price Segments Comparison':
-        page_PSC = st.sidebar.selectbox('Choose the metrics',
-                                        ['Nitric Oxides over Distance', 'Number of Rooms over Age',
-                                         'Age over Distance', 'Nitric Oxides over Age',
-                                         'Number of Rooms over Distance'])
         st.header('Price Segments Comparison')
-        """---"""
-        if page_PSC == 'Nitric Oxides over Distance':
-            st.subheader(
-                'Dependence of the concentration of nitric oxide around the house on the distance from the city center to the house')
-            """It is expected that number of rooms in house grows as it gets farther from the city centre.  
-The graph below shows dependency of number of rooms in the house on distance from the city centre."""
-            st.write(plot_psc_nox_dis())
-            """ From the graph we can conclude that average number of rooms in expensive houses remain constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses increases as distance to the city centre from the house grows."""
 
-        elif page_PSC == 'Number of Rooms over Age':
-            st.subheader('Dependence of number of rooms in the house on its Age')
-            """It is expected that in houses of higher price number of rooms is greater rather than in houses of average/low price.  
+        """---"""
+        st.subheader(
+            'Dependence of the concentration of nitric oxide around the house on the distance from the city center to the house')
+        """It is expected that number of rooms in house grows as it gets farther from the city centre.  
+The graph below shows dependency of number of rooms in the house on distance from the city centre."""
+        st.write(plot_psc_nox_dis())
+        """ From the graph we can conclude that average number of rooms in expensive houses remain constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses increases as distance to the city centre from the house grows."""
+
+        """---"""
+        st.subheader('Dependence of number of rooms in the house on its Age')
+        """It is expected that in houses of higher price number of rooms is greater rather than in houses of average/low price.  
 The graph below shows dependency of number of rooms in the house on its age. """
-            st.write(plot_psc_rm_age())
-        elif page_PSC == 'Age over Distance':
-            st.subheader('Dependence of age of the house on its distance from the center of the city')
-            """It is expected that number of rooms in house grows as it gets farther from the city centre.  
+        st.write(plot_psc_rm_age())
+
+        """---"""
+        st.subheader('Dependence of age of the house on its distance from the center of the city')
+        """It is expected that number of rooms in house grows as it gets farther from the city centre.  
 The graph below shows dependency of number of rooms in the house on distance from the city centre."""
-            st.write(plot_psc_age_dis())
-            """From the graph we can conclude that average number of rooms in expensive houses remains constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses increases as distance to the city centre from the house grows."""
-        elif page_PSC == 'Nitric Oxides over Age':
-            st.subheader('Dependence of nitric oxides concentration around the house on its age')
-            """It is expected that nitric oxides concentration is lower around expensive houses rather than around average/low priced houses.  
+        st.write(plot_psc_age_dis())
+        """From the graph we can conclude that average number of rooms in expensive houses remains constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses increases as distance to the city centre from the house grows."""
+
+        """---"""
+        st.subheader('Dependence of nitric oxides concentration around the house on its age')
+        """It is expected that nitric oxides concentration is lower around expensive houses rather than around average/low priced houses.  
 The graph below shows dependency of nitric oxides concentration around house on its age."""
-            st.write(plot_psc_nox_age())
-            """From the graph we can conclude that on average expensive houses of the same age as average/low priced houses have better air environment for all ages varying."""
-        elif page_PSC == 'Number of Rooms over Distance':
-            st.subheader('Dependence of number of rooms in the house on its distance from the city centre')
-            """It is expected that number of rooms in house grows as it gets farther from the city centre.  
+        st.write(plot_psc_nox_age())
+        """From the graph we can conclude that on average expensive houses of the same age as average/low priced houses have better air environment for all ages varying."""
+
+        """---"""
+        st.subheader('Dependence of number of rooms in the house on its distance from the city centre')
+        """It is expected that number of rooms in house grows as it gets farther from the city centre.  
 The graph below shows dependency of number of rooms in the house on distance from the city centre."""
-            st.write(plot_psc_rm_dis())
-            """From the graph we can conclude that average number of rooms in expensive houses remain constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses increases as distance to the city centre from the house grows."""
+        st.write(plot_psc_rm_dis())
+        """From the graph we can conclude that average number of rooms in expensive houses remain constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses increases as distance to the city centre from the house grows."""
 
     elif page == 'General Data Analysis':
         st.header('General Data Analysis')
@@ -641,11 +639,14 @@ The graph below shows dependency of room number on price."""
             """From the graph we can conclude that with good precision the more house is expensive, the more rooms it has. It may be so as wealthy people prefer bigger houses with more rooms as they can afford them, and consequently, expensive houses is built with more rooms than average houses."""
 
     elif page == 'Conclusion':
-        st.subheader('Conclusion ')
+        st.header('Conclusion')
         """---"""
         """Well, as we can see above, most of my statements were confirmed, although, there are some that were refuted. Let's state them further:"""
         """> *House is more valuable if it is distanced from city centre, has clean air in its surroundings, a lot of rooms and in average of moderate age*"""
         """As we can see on the graphs, the air condisitons near house gets better as house is more distanced from the city, so that we can say that ecology is more important to people, rather than time to get to work. What comes to age, maybe, as I stated before, people tradeoff communications quality to better location, or for expensive houses live in historical legacy and doesn't want to move out for personal reasons."""
+        """---"""
+        """##### `>>> final_word()`"""
+        """##### `Thanks for your attention!`"""
 
 
 if __name__ == "__main__":
