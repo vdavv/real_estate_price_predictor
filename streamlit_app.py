@@ -641,7 +641,7 @@ The graph below shows dependency of room number on price."""
             """From the graph we can conclude that with good precision the more house is expensive, the more rooms it has. It may be so as wealthy people prefer bigger houses with more rooms as they can afford them, and consequently, expensive houses is built with more rooms than average houses."""
 
     elif page == 'Conclusion':
-        st.subheader('Conclusion')
+        st.subheader('Conclusion ')
         """---"""
         """Well, as we can see above, most of my statements were confirmed, although, there are some that were refuted. Let's state them further:"""
         """> *House is more valuable if it is distanced from city centre, has clean air in its surroundings, a lot of rooms and in average of moderate age*"""
