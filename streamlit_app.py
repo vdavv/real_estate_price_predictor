@@ -338,8 +338,8 @@ def main():
     if page == 'About':
         """
         # Real estate analysis
-        ##### `>>> 'Aleksei Pankin'.isAuthor()`
-        ##### `True`
+        ##### `>>> 'Aleksei Pankin'.isAuthor()` `\\nTrue`
+        
         """
         """---"""
         st.header('Hypothesis')
@@ -357,6 +357,8 @@ Further let's observe the dataset and *prove* or *refute* that hypothesis"""
         """---"""
         page_KM = st.sidebar.selectbox('Choose the contents', ['Data', 'Chart'])
         if page_KM == 'Data':
+            agenda = st.sidebar.checkbox('Show legend')
+            chart = st.sidebar.checkbox('Show visualization')
             col1, col2, col3 = st.columns(3)
             col1.metric("mean house price", value='$' + str(numerize(1000 * mean_price)))
             col2.metric('max house price', value='$' + str(numerize(1000 * max_price)))
@@ -364,8 +366,11 @@ Further let's observe the dataset and *prove* or *refute* that hypothesis"""
             col4, col5 = st.columns(2)
             col4.metric('median house price', value='$' + str(numerize(1000 * median_price)))
             col5.metric('standard house price deviation', value='$' + str(numerize(1000 * std_price)))
+            if chart:
+                st.write(plot_key_metrics())
             st.write(data[['NOX', 'RM', 'DIS', 'AGE', 'RAD', 'PTRATIO', 'MEDV']].describe())
-            """
+            if agenda:
+                """
                 ```
                 NOX -nitric oxides concentration (parts per 10 million)
 
@@ -382,7 +387,12 @@ Further let's observe the dataset and *prove* or *refute* that hypothesis"""
                 MEDV -Median value of owner-occupied homes in 1000's dollars
                 ```"""
         elif page_KM == 'Chart':
+            """The histogram below shows distribution of houses of different prices with key indicators marked upon it"""
             st.write(plot_key_metrics())
+            """From the graph we can conclude that expensive house can be defined as a house of price more than approximately \$30000, and the term 'expensive' will be defined exactly so from now on in the whole project.
+            At the same time average priced house is a house that worth more than \$12500 and not more than \$30000 and low priced house is a house that is worth not more than \$12500.  
+            In other words, expensive house is to the right of right border of the mean price corridor, average house is inside the mean price corridor and cheap is to the left of border of the mean price corridor on the chart above.
+            """
 
     elif page == 'Price Segments Comparison':
         st.header('Price Segments Comparison')
@@ -392,7 +402,7 @@ Further let's observe the dataset and *prove* or *refute* that hypothesis"""
         st.subheader(
             'Dependence of the Concentration of Nitric Oxides around the house on the Distance from the city center to the house')
         """It is expected, that in expensive houses nitric oxides concentration on average is lower with other things being equal.  
-The graph below shows dependency of nitric oxides concentration in the air around the house on its distance from the city center."""
+The chart below shows dependency of nitric oxides concentration in the air around the house on its distance from the city center."""
         st.write(plot_psc_nox_dis())
         """From the graph we can conclude that with very high precision if the distance from the city centre is the same, than the air is better around the house of higher price rather than of average/low price, as expected. However, at around 8 km from the city, on average, these difference wipes out."""
 
@@ -400,7 +410,7 @@ The graph below shows dependency of nitric oxides concentration in the air aroun
 
         st.subheader('Dependence of Number of Rooms in the house on its Age')
         """It is expected that in houses of higher price number of rooms is greater rather than in houses of average/low price.  
-The graph below shows dependency of number of rooms in the house on its age. """
+The chart below shows dependency of number of rooms in the house on its age. """
         st.write(plot_psc_rm_age())
         """From the graph we can conclude that number of rooms in expensive houses of all ages is on average greater than number of rooms in the average/low priced house of the same age by at least 1 room. Moreover, we can see that new expensive houses are on average built with fewer rooms rather than old ones from the same price category. At the same time, average/low priced houses are on average built with more rooms rather than old ones from the same price category."""
 
@@ -408,7 +418,7 @@ The graph below shows dependency of number of rooms in the house on its age. """
 
         st.subheader('Dependence of Age of the house on its Distance from the center of the city')
         """It is expected that newer houses are more expensive rather than old ones with the same distance to the city centre and consequently overall location metrics.  
-The graph below shows dependency of age of house on its distance to the city centre."""
+The chart below shows dependency of age of house on its distance to the city centre."""
         st.write(plot_psc_age_dis())
         """From the graph we can conclude that with good precision for the same distance from the city centre expensive house on average will be newer by 8 years rather than average/low priced one with the same location, as expected."""
 
@@ -416,7 +426,7 @@ The graph below shows dependency of age of house on its distance to the city cen
 
         st.subheader('Dependence of Nitric Oxides concentration around the house on its Age')
         """It is expected that nitric oxides concentration is lower around expensive houses rather than around average/low priced houses.  
-The graph below shows dependency of nitric oxides concentration around house on its age."""
+The chart below shows dependency of nitric oxides concentration around house on its age."""
         st.write(plot_psc_nox_age())
         """From the graph we can conclude that on average expensive houses of the same age as average/low priced houses have better air environment for all ages varying."""
 
@@ -424,7 +434,7 @@ The graph below shows dependency of nitric oxides concentration around house on 
 
         st.subheader('Dependence of Number of Rooms in the house on its Distance from the city centre')
         """It is expected that number of rooms in house grows as it gets farther from the city centre.  
-The graph below shows dependency of number of rooms in the house on distance from the city centre."""
+The chart below shows dependency of number of rooms in the house on distance from the city centre."""
         st.write(plot_psc_rm_dis())
         """From the graph we can conclude that average number of rooms in expensive houses remain constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses increases as distance to the city centre from the house grows."""
 
@@ -435,7 +445,7 @@ The graph below shows dependency of number of rooms in the house on distance fro
 
         st.subheader('Dependence of Distance from the city centre to the house on its Price')
         """It is expected that most expensive houses are located near to the city centre.  
-The graph below shows dependency of distance from city centre to house on price of house."""
+The histogram below shows dependency of distance from city centre to house on price of house."""
         st.write(px.histogram(
             data[["MEDV", f"{nm}DIS"]],
             x="MEDV",
@@ -457,7 +467,7 @@ The graph below shows dependency of distance from city centre to house on price 
 
         st.subheader('Dependence of Number of Rooms in the house on its Price')
         """It is expected that the more rooms in a house, the higher its price.  
-The graph below shows dependency of number of rooms on price of house."""
+The histogram below shows dependency of number of rooms on price of house."""
         st.write(
             px.histogram(
                 data[["MEDV", f"{nm}RM"]],
@@ -475,7 +485,7 @@ The graph below shows dependency of number of rooms on price of house."""
 
         st.subheader('Dependence of Nitric Oxides Concentration around the house on its Price')
         """It is expected that the lower the concentration of nitric oxides, the higher the price of the house.  
-The graph below shows dependency of nitric oxides concentration on price of house."""
+The histogram below shows dependency of nitric oxides concentration on price of house."""
         st.write(px.histogram(
             data[["MEDV", f"{nm}NOX"]],
             x="MEDV",
@@ -495,7 +505,7 @@ The graph below shows dependency of nitric oxides concentration on price of hous
 
         st.subheader('Dependence of Age of house on its Price')
         """It is expected that the newer the house, the higher its price.  
-The graph below shows dependency of age of house on its price."""
+The histogram below shows dependency of age of house on its price."""
         st.write(px.histogram(
             data[["MEDV", f"{nm}AGE"]],
             x="MEDV",
@@ -513,7 +523,7 @@ The graph below shows dependency of age of house on its price."""
         st.subheader(
             'Dependence of Nitric Oxides Concentration in the vicinity of house on its Distance from the city centre')
         """It is expected that the farther the house from the city centre the lower the concentration of nitric oxides around it.  
-        The graph below shows dependency of nitric oxides concentration on distance of house from the city centre."""
+        The histogram below shows dependency of nitric oxides concentration on distance of house from the city centre."""
 
         st.write(px.histogram(
             data[[f"{nm}NOX", f"{nm}DIS"]],
@@ -534,7 +544,7 @@ The graph below shows dependency of age of house on its price."""
 
         st.subheader('Dependence of Age of house on Number of Rooms in it')
         """It is expected that that the newer the house, the greater the number of rooms in it.  
-        The graph below shows dependency of age of house on number of rooms in it."""
+        The histogram below shows dependency of age of house on number of rooms in it."""
         st.write(px.histogram(
             data[[f"{nm}AGE", f"{nm}RM"]],
             x=f"{nm}RM",
@@ -553,7 +563,7 @@ The graph below shows dependency of age of house on its price."""
 
         st.subheader('Linear regression of Distance from the city centre to the house on its Price')
         """It is expected that the closer the house to the city centre, the higher its price  
-The graph below shows dependency of distance from the house to the city centre on its price."""
+The chart below shows dependency of distance from the house to the city centre on its price."""
         st.write(plot_linear_regression(
             "MEDV",
             "DIS",
@@ -568,7 +578,7 @@ The graph below shows dependency of distance from the house to the city centre o
 
         st.subheader('Linear regression of Nitric Oxides Concentration in the vicinity of house on its Price')
         """It is expected that the lower the concentration of nitric oxides, the higher the price of the house.  
-The graph below shows dependency of nitric oxides concentration around the house on its price."""
+The chart below shows dependency of nitric oxides concentration around the house on its price."""
         st.write(plot_linear_regression(
             "MEDV",
             "NOX",
@@ -584,7 +594,7 @@ The graph below shows dependency of nitric oxides concentration around the house
         st.subheader(
             'Linear regression of Nitric Oxides Concentration in the vicinity of house on its Distance from the city centre')
         """It is expected that concentration of nitric oxides drops as its gets farther from the city centre.  
-The graph below shows dependency of nitric oxides concentration in the air around the house on distance to the city centre from it."""
+The chart below shows dependency of nitric oxides concentration in the air around the house on distance to the city centre from it."""
         st.write(plot_linear_regression(
             "DIS",
             "NOX",
@@ -599,7 +609,7 @@ The graph below shows dependency of nitric oxides concentration in the air aroun
 
         st.subheader('Linear regression of Age of house on its Price')
         """It is expected that the newer the house, the higher its price.  
-The graph below shows dependency of age of house on its price."""
+The chart below shows dependency of age of house on its price."""
         st.write(plot_linear_regression(
             "MEDV",
             "AGE",
@@ -614,7 +624,7 @@ The graph below shows dependency of age of house on its price."""
 
         st.subheader('Linear regression of Number of Rooms in the house on its Price')
         """It is expected that the more rooms in a house, the higher its price.  
-The graph below shows dependency of room number on price."""
+The chart below shows dependency of room number on price."""
         st.write(plot_linear_regression(
             "MEDV",
             "RM",
