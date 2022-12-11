@@ -425,12 +425,12 @@ Further let's observe the dataset and *prove* or *refute* that hypothesis"""
 
             st.subheader('Nitric oxides concentration in the air around the house metrics')
             col1n, col2n, col3n = st.columns(3)
-            col1n.metric('mean NOX', value=str(int(10 * round(mean_nox, 1))) + ' PPM')
-            col2n.metric('max NOX', value=str(int(10 * round(max_nox, 1))) + ' PPM')
-            col3n.metric('min NOX', value=str(int(10 * round(min_nox, 1))) + ' PPM')
+            col1n.metric('mean NOX', value=str(10 * round(mean_nox, 2)) + ' PPM')
+            col2n.metric('max NOX', value=str(10 * round(max_nox, 2)) + ' PPM')
+            col3n.metric('min NOX', value=str(10 * round(min_nox, 1)) + ' PPM')
             col4n, col5n = st.columns(2)
-            col4n.metric('median NOX', value=str(int(10 * round(median_nox, 1))) + ' PPM')
-            col5n.metric('standard NOX deviation', value=str(int(10 * round(std_nox, 1))) + ' PPM')
+            col4n.metric('median NOX', value=str(10 * round(median_nox, 2)) + ' PPM')
+            col5n.metric('standard NOX deviation', value=str(10 * round(std_nox, 2)) + ' PPM')
             st.caption("_PPM_ stands for _Parts Per Million_")
 
             if agenda:
