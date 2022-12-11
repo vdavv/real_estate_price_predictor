@@ -435,7 +435,10 @@ Further let's observe the dataset and *prove* or *refute* that hypothesis"""
 
             if agenda:
                 st.sidebar.caption('_At the end of the page_')
+
                 "---"
+
+                st.subheader('Handled source data with legend to it')
                 st.write(data[['NOX', 'RM', 'DIS', 'AGE', 'RAD', 'PTRATIO', 'MEDV']].describe())
                 """
                 ```
