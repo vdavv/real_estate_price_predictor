@@ -43,7 +43,7 @@ def plot_key_metrics():
         x="MEDV",
         nbins=100,
         histfunc="count",
-        title="Histogram of number of houses on price",
+        title="Histogram of number of houses on price of the house",
         height=800, width=800
     )
     fig.update_yaxes(title="Number of houses")
