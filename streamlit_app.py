@@ -43,7 +43,7 @@ def plot_key_metrics():
         x="MEDV",
         nbins=100,
         histfunc="count",
-        title="Visualisation",
+        title="Histogram of number of houses on price",
         height=800, width=800
     )
     fig.update_yaxes(title="Number of houses")
@@ -290,6 +290,26 @@ std_price = std(data["MEDV"].tolist())
 median_price = median(data["MEDV"].tolist())
 max_price = max(data["MEDV"].tolist())
 min_price = min(data["MEDV"].tolist())
+mean_dis = mean(data["DIS"].tolist())
+std_dis = std(data["DIS"].tolist())
+median_dis = median(data["DIS"].tolist())
+max_dis = max(data["DIS"].tolist())
+min_dis = min(data["DIS"].tolist())
+mean_age = mean(data["AGE"].tolist())
+std_age = std(data["AGE"].tolist())
+median_age = median(data["AGE"].tolist())
+max_age = max(data["AGE"].tolist())
+min_age = min(data["AGE"].tolist())
+mean_rm = mean(data["RM"].tolist())
+std_rm = std(data["RM"].tolist())
+median_rm = median(data["RM"].tolist())
+max_rm = max(data["RM"].tolist())
+min_rm = min(data["RM"].tolist())
+mean_nox = mean(data["NOX"].tolist())
+std_nox = std(data["NOX"].tolist())
+median_nox = median(data["NOX"].tolist())
+max_nox = max(data["NOX"].tolist())
+min_nox = min(data["NOX"].tolist())
 upper_limit = 30
 t1 = f"Price < ${int(1000 * upper_limit)}"
 t2 = f"${int(1000 * upper_limit)} < Price"
@@ -334,7 +354,7 @@ data_segmented = data_segmented.sort_index()
 def main():
     st.set_page_config(page_title="Real Estate Analysis by Aleksei Pankin", layout='wide')
     page = st.sidebar.selectbox('Choose the page',
-                                ['About', 'Key indicators', 'Price Segments Comparison',
+                                ['About', 'Key Indicators', 'Price Segments Comparison',
                                  'General Data Analysis', 'Linear Regressions', 'Conclusion'])
     if page == 'About':
         """
@@ -349,28 +369,74 @@ def main():
         """ Let's consider development of world and constantly increasing average quality of life as axiom. Then let's state that the better surroundings of the house the more valuable it is. For some people it's also important to be close to the centre of the city, so we will consider it as an argument for price increase too. What is important too is age of the house, as communications tear over time, its logical for new houses to be more developed overall rather than olds ones, so, consequently, more valuable too.  
 
 So, putting it all in one let's state the hypothesis: 
-> _House is more valuable if it has good accessibility to the city centre, a lot of rooms, is of moderate age, good air quality around._
+> _House is more valuable if it has good accessibility to the city centre, has a lot of rooms, is of moderate age, has good air quality around it_
 
 Further let's observe the dataset and *prove* or *refute* that hypothesis"""
 
-    elif page == 'Key indicators':
-        st.header('Key indicators')
+    elif page == 'Key Indicators':
+        st.header('Key Indicators')
         """---"""
-        page_KM = st.sidebar.selectbox('Choose the contents', ['Data', 'Chart'])
-        if page_KM == 'Data':
-            agenda = st.sidebar.checkbox('Show legend')
-            chart = st.sidebar.checkbox('Show visualization')
-            col1, col2, col3 = st.columns(3)
-            col1.metric("mean house price", value='$' + str(numerize(1000 * mean_price)))
-            col2.metric('max house price', value='$' + str(numerize(1000 * max_price)))
-            col3.metric('min house price', value='$' + str(numerize(1000 * min_price)))
-            col4, col5 = st.columns(2)
-            col4.metric('median house price', value='$' + str(numerize(1000 * median_price)))
-            col5.metric('standard house price deviation', value='$' + str(numerize(1000 * std_price)))
-            if chart:
-                st.write(plot_key_metrics())
-            st.write(data[['NOX', 'RM', 'DIS', 'AGE', 'RAD', 'PTRATIO', 'MEDV']].describe())
+        page_KM = st.sidebar.selectbox('Choose the contents', ['Metrics', 'Chart'])
+        if page_KM == 'Metrics':
+            agenda = st.sidebar.checkbox('Show source data')
+            st.subheader('Price of house metrics')
+            col1p, col2p, col3p = st.columns(3)
+            col1p.metric("mean house price", value='$' + str(numerize(1000 * mean_price)))
+            col2p.metric('max house price', value='$' + str(numerize(1000 * max_price)))
+            col3p.metric('min house price', value='$' + str(numerize(1000 * min_price)))
+            col4p, col5p = st.columns(2)
+            col4p.metric('median house price', value='$' + str(numerize(1000 * median_price)))
+            col5p.metric('standard house price deviation', value='$' + str(numerize(1000 * std_price)))
+
+            "---"
+
+            st.subheader('Distance from the house to the city centre metrics')
+            col1d, col2d, col3d = st.columns(3)
+            col1d.metric('mean distance', value=str(int(1000 * round(mean_dis, 3))) + 'm')
+            col2d.metric('max distance', value=str(int(1000 * round(max_dis, 3))) + 'm')
+            col3d.metric('min distance', value=str(int(1000 * round(min_dis, 3))) + 'm')
+            col4d, col5d = st.columns(2)
+            col4d.metric('median distance', value=str(int(1000 * round(median_dis, 3))) + 'm')
+            col5d.metric('standard distance deviation', value=str(int(1000 * round(std_dis, 3))) + 'm')
+
+            "---"
+
+            st.subheader('Age of house metrics')
+            col1a, col2a, col3a = st.columns(3)
+            col1a.metric('mean age', value=str(round(mean_age, 1)) + ' yrs')
+            col2a.metric('max age', value=str(round(max_age, 1)) + ' yrs')
+            col3a.metric('min age', value=str(round(min_age, 1)) + ' yrs')
+            col4a, col5a = st.columns(2)
+            col4a.metric('median age', value=str(round(median_age, 1)) + ' yrs')
+            col5a.metric('standard age deviation', value=str(round(std_age, 1)) + ' yrs')
+
+            "---"
+
+            st.subheader('Number of rooms in the house metrics')
+            col1r, col2r, col3r = st.columns(3)
+            col1r.metric('mean № rooms', value=round(mean_rm, 1))
+            col2r.metric('max № rooms', value=round(max_rm, 1))
+            col3r.metric('min № rooms', value=round(min_rm, 1))
+            col4r, col5r = st.columns(2)
+            col4r.metric('median № rooms', value=round(median_rm, 1))
+            col5r.metric('standard № rooms deviation', value=round(std_rm, 1))
+
+            "---"
+
+            st.subheader('Nitric oxides concentration in the air around the house metrics')
+            col1n, col2n, col3n = st.columns(3)
+            col1n.metric('mean NOX', value=str(int(10 * round(mean_nox, 1))) + ' PPM')
+            col2n.metric('max NOX', value=str(int(10 * round(max_nox, 1))) + ' PPM')
+            col3n.metric('min NOX', value=str(int(10 * round(min_nox, 1))) + ' PPM')
+            col4n, col5n = st.columns(2)
+            col4n.metric('median NOX', value=str(int(10 * round(median_nox, 1))) + ' PPM')
+            col5n.metric('standard NOX deviation', value=str(int(10 * round(std_nox, 1))) + ' PPM')
+            st.caption("_PPM_ stands for _Parts Per Million_")
+
             if agenda:
+                st.sidebar.caption('_At the end of the page_')
+                "---"
+                st.write(data[['NOX', 'RM', 'DIS', 'AGE', 'RAD', 'PTRATIO', 'MEDV']].describe())
                 """
                 ```
                 NOX -nitric oxides concentration (parts per 10 million)
@@ -639,9 +705,9 @@ The chart below shows dependency of room number on price."""
     elif page == 'Conclusion':
         st.header('Conclusion')
         """---"""
-        """Well, as we can see above, most of my statements were confirmed, although, there are some that were refuted. Let's state them further:"""
-        """> *House is more valuable if it is distanced from city centre, has clean air in its surroundings, a lot of rooms and in average of moderate age*"""
-        """As we can see on the graphs, the air conditions near house gets better as house is more distanced from the city, so that we can say that ecology is more important to people, rather than time to get to work. What comes to age, maybe, as I stated before, people tradeoff communications quality to better location, or for expensive houses live in historical legacy and doesn't want to move out for personal reasons."""
+        """Well, as we can see, most of my statements were confirmed, although, there are some that were refuted. Let's state them further:"""
+        """> *House is more valuable if it is distanced from city centre, has clean air in its surroundings, has a lot of rooms and in average is of moderate age*"""
+        """As we can see on the graphs, the air conditions near house gets better as house is more distanced from the city, so that we can say that ecology is more important to people, rather than time to get to work. What comes to age, maybe, as I stated before, people alter communications quality for better location, while for expensive houses they prefer to live in historical legacy and doesn't want to move out for personal reasons."""
         """---"""
         """##### `>>> concluding_remark('end_of_project')`"""
         """##### `created by DSBA222-1 student`"""
