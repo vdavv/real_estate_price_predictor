@@ -371,7 +371,7 @@ def main():
 So, putting it all in one let's state the hypothesis: 
 > _House is more valuable if it has good accessibility to the city centre, has a lot of rooms, is of moderate age, has good air quality around it_
 
-Further let's observe the dataset and *prove* or *refute* that hypothesis"""
+Further let's observe the dataset and *prove* or *refute* that hypothesis."""
 
     elif page == 'Key Indicators':
         st.header('Key Indicators')
@@ -506,7 +506,7 @@ The chart below shows dependency of nitric oxides concentration around house on 
         """It is expected that number of rooms in house grows as it gets farther from the city centre.  
 The chart below shows dependency of number of rooms in the house on distance from the city centre."""
         st.write(plot_psc_rm_dis())
-        """From the graph we can conclude that average number of rooms in expensive houses remain constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses increases as distance to the city centre from the house grows."""
+        """From the graph we can conclude that average number of rooms in expensive houses remain constant and equal to roughly 7.2 rooms in house, while average number of rooms in average/low priced houses rises as distance to the city centre from the house increases."""
 
     elif page == 'General Data Analysis':
         st.header('General Data Analysis')
