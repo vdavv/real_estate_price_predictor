@@ -709,7 +709,7 @@ The chart below shows dependency of room number on price."""
         st.header('Conclusion')
         """---"""
         """Well, as we can see, most of my statements were confirmed, although, there are some that were refuted. Let's state them further:"""
-        """> *House is more valuable if it is distanced from city centre, has clean air in its surroundings, has a lot of rooms and in average is of moderate age*"""
+        """> *House is more valuable if it is distanced from the city centre, has clean air in its vicinity, has a lot of rooms and in average is of moderate age*"""
         """As we can see on the graphs, the air conditions near house gets better as house is more distanced from the city, so that we can say that ecology is more important to people, rather than time to get to work. What comes to age, maybe, as I stated before, people alter communications quality for better location, while for expensive houses they prefer to live in historical legacy and doesn't want to move out for personal reasons."""
         """---"""
         """##### `>>> concluding_remark('end_of_project')`"""
