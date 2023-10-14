@@ -352,14 +352,14 @@ data_segmented = data_segmented.sort_index()
 
 
 def main():
-    st.set_page_config(page_title="Real Estate Analysis by Aleksei Pankin", layout='wide')
+    st.set_page_config(page_title="Real Estate Analysis by Aleksei Vdonin", layout='wide')
     page = st.sidebar.selectbox('Choose the page',
                                 ['About', 'Key Indicators', 'Price Segments Comparison',
                                  'General Data Analysis', 'Linear Regressions', 'Conclusion'])
     if page == 'About':
         """
         # Real Estate Analysis
-        ##### `>>> 'Aleksei Pankin'.isAuthor()` `\\nTrue`
+        ##### `>>> 'Aleksei Vdonin'.isAuthor()` `\\nTrue`
         
         """
         """---"""
@@ -714,7 +714,7 @@ The chart below shows dependency of room number on price."""
         """---"""
         """##### `>>> concluding_remark('end_of_project')`"""
         """##### `created by DSBA222-1 student`"""
-        """##### `Aleksei Pankin`"""
+        """##### `Aleksei Vdonin`"""
 
 
 if __name__ == "__main__":
