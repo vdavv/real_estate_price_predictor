@@ -1,5 +1,5 @@
 # Real estate analysis
-by **Aleksei Pankin**   
+by **Aleksei Vdonin**   
 ## DSBA222-1 project
 ### Link to the project   
 https://vdavv-real-estate-analysis-streamlit-app-7obpjf.streamlit.app
