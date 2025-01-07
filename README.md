@@ -2,9 +2,9 @@
 by **Aleksei Vdonin**   
 ## DSBA222-1 project
 ### Link to the project   
-https://vdavv-real-estate-analysis-streamlit-app-7obpjf.streamlit.app
+[Web-App](https://vdoninav-real-estate-analysis.streamlit.app/)
 ### Dataset   
-https://www.kaggle.com/datasets/arslanali4343/real-estate-dataset
+[Kaggle Dataset](https://www.kaggle.com/datasets/arslanali4343/real-estate-dataset)
 ### Libraries
 - pandas (data handling)
 - scipy (data processing)
